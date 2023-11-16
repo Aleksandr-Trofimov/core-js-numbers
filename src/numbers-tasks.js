@@ -619,9 +619,10 @@ function getMaxNumber(firstNumber, secondNumber) {
  * -1, 1 => -1 | 0 | 1
  */
 function getRandomInteger(min, max) {
-  return Math.random(min, max);
+  return Math.floor(Math.random() * (max - min) + min);
 }
-
+// *(max - min) - растягиваем интеравал до нужного размера
+// + min - сдвигаем интеравал на нужное место на координатной прямой
 /**
  * Returns the length of the hypotenuse of a right triangle.
  *
@@ -632,8 +633,8 @@ function getRandomInteger(min, max) {
  * @example:
  * 3, 4 => 5
  */
-function getHypotenuse(/* a, b */) {
-  throw new Error('Not implemented');
+function getHypotenuse(a, b) {
+  return Math.hypot(a, b);
 }
 
 /**
@@ -649,8 +650,20 @@ function getHypotenuse(/* a, b */) {
  * 10 => 5
  * 15 => 8
  */
-function getCountOfOddNumbers(/* number */) {
-  throw new Error('Not implemented');
+function getCountOfOddNumbers(number) {
+  const absNum = Math.abs(number);
+  let result = 0;
+  const subNumber = absNum + 1;
+  if (absNum % 2 === 0) {
+    for (let i = 0; i < absNum; i += 2) {
+      result += 1;
+    }
+  } else {
+    for (let i = 0; i < subNumber; i += 2) {
+      result += 1;
+    }
+  }
+  return result;
 }
 
 module.exports = {
